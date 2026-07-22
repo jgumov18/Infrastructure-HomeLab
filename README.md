@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Infrastructure HomeLab
 
 ## Goals
