@@ -1,0 +1,9 @@
+# Virtual machine images
+*.img
+*.qcow2
+*.vmdk
+*.vdi
+*.iso
+
+# VMware
+VMware/
