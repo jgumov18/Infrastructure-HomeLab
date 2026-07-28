@@ -1,9 +1,33 @@
-# Virtual machine images
-*.img
-*.qcow2
-*.vmdk
-*.vdi
-*.iso
+# Operating System
+.DS_Store
+Thumbs.db
 
-# VMware
+# VS Code
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Machines
 VMware/
+EVE-NG/
+
+# Images / ISOs
+ISOs/
+Images/
+
+# Backups
+Backups/
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+
+# Linux swap
+*.swp
+
+# macOS
+.AppleDouble
+.LSOverride
