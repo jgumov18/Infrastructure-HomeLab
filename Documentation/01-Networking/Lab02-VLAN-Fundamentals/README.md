@@ -10,25 +10,31 @@ This lab provides the Layer 2 foundation required for future services such as DH
 
 ---
 
+## Skills Covered
+
+- VLAN
+- IEEE 802.1Q
+- Bridge
+- VLAN Filtering
+- Trunk Ports
+- Access Ports
+- Tagged Traffic
+- Untagged Traffic
+- PVID
+- Enterprise Layer 2 Switching
+
 # Objectives
 
-After completing this lab the network should provide:
-
-- Enterprise Layer 2 switching
-- VLAN segmentation
-- Broadcast domain isolation
-- Trunk connectivity
-- Access ports for end devices
-- VLAN filtering
-- Proper PVID assignment
-- Preparation for Layer 3 routing
+- Configure enterprise Layer 2 switching
+- Implement VLAN segmentation
+- Configure trunk and access ports
+- Enable VLAN filtering
+- Configure PVID on access ports
+- Prepare the network for Layer 3 routing
 
 ---
 
 # Network Topology
-
-> Screenshot:
-> # Network Topology
 
 ![Enterprise Topology](screenshots/01-Full-Topology.png)
 
@@ -38,164 +44,77 @@ After completing this lab the network should provide:
 
 ## What is a VLAN?
 
-A VLAN (Virtual Local Area Network) is a logical separation of devices inside the same physical network.
-
-Instead of creating multiple physical switches, VLANs allow multiple isolated broadcast domains to exist on a single switching infrastructure.
-
-Benefits include:
-
-- Better security
-- Reduced broadcast traffic
-- Easier management
-- Improved scalability
+A VLAN (Virtual Local Area Network) is a logical separation of devices inside the same physical network. VLANs isolate broadcast domains and improve security, scalability, and network management.
 
 ---
 
 ## Broadcast Domains
 
-Without VLANs every device belongs to one broadcast domain.
+Each VLAN represents its own broadcast domain.
 
-With VLANs every VLAN becomes its own broadcast domain.
-
-Example:
-
-VLAN10 → Management
-
-VLAN20 → Servers
-
-VLAN30 → Users
-
-VLAN40 → Guest
+- VLAN10 – Management
+- VLAN20 – Servers
+- VLAN30 – Users
+- VLAN40 – Guest
+- VLAN99 – Native
 
 ---
 
-## Bridge (RouterOS)
+## Bridge
 
-A Bridge in MikroTik acts as a Layer 2 switching domain.
-
-All Ethernet interfaces participating in switching are added to the bridge.
-
-The bridge forwards Ethernet frames based on the MAC Address Table.
+A Bridge in MikroTik acts as a Layer 2 switch by forwarding Ethernet frames based on MAC addresses.
 
 ---
 
 ## VLAN Filtering
 
-VLAN Filtering enables VLAN awareness on the bridge.
-
-Once enabled, the bridge begins forwarding frames according to the configured VLAN table.
-
-Without VLAN filtering, VLAN configuration has no effect.
+VLAN Filtering enables VLAN awareness on the bridge. Without it, VLAN configuration will not be enforced.
 
 ---
 
 ## Tagged vs Untagged
 
-Tagged traffic carries an IEEE 802.1Q VLAN tag.
+### Tagged
 
-It is used between:
+Used between:
 
 - Switch ↔ Switch
 - Switch ↔ Router
-- Switch ↔ Hypervisor
 
-Untagged traffic is used by end devices such as:
+### Untagged
+
+Used by end devices:
 
 - PCs
+- Servers
 - Printers
-- IP Phones (unless configured otherwise)
 
 ---
 
 ## Trunk Port
 
-A trunk port transports multiple VLANs over a single physical link.
-
-Example:
-
-SW1 ←→ SW2
-
-Allowed VLANs:
-
-- VLAN10
-- VLAN20
-- VLAN30
-- VLAN40
-- VLAN99
+A trunk port carries multiple VLANs over a single physical interface.
 
 ---
 
 ## Access Port
 
-An access port belongs to a single VLAN.
-
-Connected devices are unaware of VLAN tagging.
-
-Example:
-
-PC01 → VLAN30
+An access port belongs to only one VLAN and sends/receives untagged traffic.
 
 ---
 
 ## PVID
 
-PVID (Port VLAN ID) determines to which VLAN incoming untagged frames belong.
+PVID (Port VLAN ID) assigns incoming untagged frames to a specific VLAN.
 
 Example:
 
+```
 ether2
-
 PVID = 30
+```
 
-Result:
-
-Every untagged Ethernet frame received on ether2 automatically becomes part of VLAN30.
-
----
-
-# Network Design
-
-## Core Router
-
-Device:
-
-R2-CORE
-
-Responsibilities:
-
-- Gateway for every VLAN
-- Future Inter-VLAN Routing
-- DHCP Server
-- NAT
-
----
-
-## Core Switch
-
-Device:
-
-SW1-CORE
-
-Responsibilities:
-
-- VLAN Distribution
-- Trunk connectivity
-- Transport all VLANs
-
----
-
-## Access Switches
-
-Devices:
-
-- SW2-ACCESS
-- SW3-ACCESS
-
-Responsibilities:
-
-- Connect end-user devices
-- Convert tagged VLAN traffic into untagged access traffic
-- Assign PVID
+Every untagged frame arriving on ether2 becomes part of VLAN30.
 
 ---
 
@@ -221,19 +140,17 @@ Configured:
 - Default Gateways
 - Connected Routes
 
-Verification:
-
-```
-### R2 VLAN Interfaces
+### VLAN Interfaces
 
 ![R2 VLAN Interfaces](screenshots/01-R2-VLAN-Interfaces.png)
-### R2 IP Addresses
 
-![R2 IP Addresses](screenshots/02-R2-IP-Addresses.png)```
-
-### R2 IP Addresses
+### IP Addresses
 
 ![R2 IP Addresses](screenshots/02-R2-IP-Addresses.png)
+
+### Routing Table
+
+![R2 Routing Table](screenshots/03-R2-Routing-Table.png)
 
 ---
 
@@ -242,19 +159,15 @@ Verification:
 Configured:
 
 - Bridge
-- Bridge Ports
 - VLAN Filtering
 - VLAN Table
 - Trunk Ports
 
-Verification:
-
-```
-### SW1 Bridge
+### Bridge
 
 ![SW1 Bridge](screenshots/04-SW1-Bridge.png)
 
-### SW1 VLAN Table
+### VLAN Table
 
 ![SW1 VLAN Table](screenshots/05-SW1-VLAN-Table.png)
 
@@ -265,21 +178,16 @@ Verification:
 Configured:
 
 - Bridge
-- Bridge Ports
-- VLAN Filtering
 - Access Ports
 - Trunk Port
 - VLAN30 Untagged
 - PVID 30
 
-Verification:
-
-```
-### SW2 Access Ports
+### Access Ports
 
 ![SW2 PVID](screenshots/06-SW2-PVID.png)
 
-### SW2 VLAN Table
+### VLAN Table
 
 ![SW2 VLAN Table](screenshots/07-SW2-VLAN-Table.png)
 
@@ -289,31 +197,48 @@ Verification:
 
 Configuration identical to SW2.
 
----
-
-# Verification
-
-The following items were verified successfully.
-
-✅ Bridge created
-
-✅ VLAN Filtering enabled
-
-✅ VLAN Table configured
-
-✅ Tagged trunk links
-
-✅ Untagged access ports
-
-✅ PVID configured
-
-### SW3 Access Ports
+### Access Ports
 
 ![SW3 PVID](screenshots/08-SW3-PVID.png)
 
-### SW3 VLAN Table
+### VLAN Table
 
 ![SW3 VLAN Table](screenshots/09-SW3-VLAN-Table.png)
+
+---
+
+## Packet Flow
+
+Example:
+
+PC01 (VLAN30)
+
+↓
+
+SW2-ACCESS
+
+↓
+
+SW1-CORE
+
+↓
+
+R2-CORE (Gateway)
+
+↓
+
+Destination Network
+
+# Verification
+
+The following items were successfully verified:
+
+- ✅ Bridge created
+- ✅ VLAN Filtering enabled
+- ✅ VLAN Table configured
+- ✅ Tagged trunk ports configured
+- ✅ Untagged access ports configured
+- ✅ PVID configured correctly
 
 ---
 
@@ -323,11 +248,7 @@ The following items were verified successfully.
 
 Access ports were initially configured as tagged.
 
-Problem:
-
-PCs do not generate VLAN tags.
-
-Resolution:
+**Resolution:**
 
 Changed access ports to untagged.
 
@@ -337,29 +258,17 @@ Changed access ports to untagged.
 
 PVID remained VLAN1.
 
-Problem:
+**Resolution:**
 
-Incoming traffic entered the wrong VLAN.
-
-Resolution:
-
-Configured:
-
-PVID = 30
-
-for all access ports.
+Configured PVID = 30 on all access ports.
 
 ---
 
 ## Issue 3
 
-Duplicate IP address configured on ether2 and VLAN interface.
+Duplicate IP address configured on the physical interface and VLAN interface.
 
-Problem:
-
-Gateway existed twice.
-
-Resolution:
+**Resolution:**
 
 Removed the IP address from the physical interface and kept it only on the VLAN interface.
 
@@ -373,23 +282,21 @@ During this lab the following concepts became clear:
 - Difference between Trunk and Access ports
 - Difference between Tagged and Untagged traffic
 - Purpose of Bridge VLAN Filtering
-- Why PVID is required
-- Packet flow inside a switched network
+- Importance of PVID
+- Enterprise VLAN design principles
 
 ---
 
 # Interview Questions
 
 - What is a VLAN?
-- Why do we use VLANs?
 - What is a Broadcast Domain?
-- Difference between Tagged and Untagged traffic?
 - What is a Trunk Port?
 - What is an Access Port?
 - What is PVID?
-- Why is VLAN Filtering required?
+- What is VLAN Filtering?
+- Why do end devices send untagged traffic?
 - Explain the packet flow from a PC to the default gateway.
-- Why doesn't a PC send VLAN tags?
 
 ---
 
@@ -397,12 +304,12 @@ During this lab the following concepts became clear:
 
 ## Lab 03 - DHCP Services
 
-In the next lab we will configure:
+The next lab will cover:
 
 - DHCP Pools
 - DHCP Networks
 - DHCP Server
-- DNS
+- DNS Configuration
 - Automatic IP Address Assignment
 - Client Connectivity Testing
 

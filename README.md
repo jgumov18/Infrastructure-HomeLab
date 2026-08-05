@@ -1,51 +1,21 @@
 # 🏠 Infrastructure HomeLab
 
-> A production-inspired Infrastructure & DevOps HomeLab built from scratch using MikroTik RouterOS, Linux, Docker, Kubernetes, Python and Automation.
+> Enterprise Networking • Linux • Docker • Kubernetes • Python • Automation
+
+![Enterprise Topology](Assets/diagrams/Enterprise-Topology.png)
+---
+
+## 📖 Overview
+
+Infrastructure HomeLab is a personal enterprise infrastructure project built from scratch using MikroTik RouterOS, Ubuntu Linux and modern DevOps technologies.
+
+The objective is to simulate a real enterprise network while learning networking, Linux administration and infrastructure automation through practical labs.
 
 ---
 
-# 📖 Project Overview
+## 🛠 Technologies
 
-This repository documents my journey of building an enterprise-style infrastructure from the ground up.
-
-The project is focused on learning through practical implementation rather than theoretical examples.
-
-Every technology is implemented, tested, documented and verified before moving to the next stage.
-
-The objective is to simulate a small enterprise network while developing practical skills in:
-
-- Enterprise Networking
-- Linux Administration
-- Network Automation
-- DevOps
-- Infrastructure as Code
-- Monitoring
-- Containerization
-
----
-
-# 🎯 Project Goals
-
-- Build an enterprise network from scratch
-- Learn networking through hands-on labs
-- Master MikroTik RouterOS
-- Develop Linux administration skills
-- Learn Docker and Kubernetes
-- Automate infrastructure with Python
-- Learn Ansible
-- Create a professional GitHub portfolio
-
----
-
-# 🏗 Enterprise Topology
-
-> *(The enterprise topology diagram will be added here.)*
-
----
-
-# 🛠 Technologies
-
-## Networking
+### Networking
 
 - MikroTik RouterOS
 - VLAN
@@ -56,110 +26,74 @@ The objective is to simulate a small enterprise network while developing practic
 - NAT
 - Static Routing
 - OSPF
-- ACL
 - Firewall
 
-## Operating Systems
+### Linux & DevOps
 
 - Ubuntu Server
-- Linux Administration
-
-## DevOps
-
-- Git
-- GitHub
 - Docker
 - Kubernetes
+- Git
+- GitHub
 - Python
 - Ansible
 
 ---
 
-# 📚 Learning Roadmap
+## 🏗 Enterprise Topology
+## 🏗 Enterprise Topology
 
-| Lab | Topic | Status |
-|------|-------------------------------|:------:|
-| 01 | Enterprise LAN Design | ✅ |
-| 02 | Enterprise VLAN Switching | ✅ |
-| 03 | DHCP Services | ⏳ |
-| 04 | NAT | ⏳ |
-| 05 | Inter-VLAN Routing | ⏳ |
-| 06 | Static Routing | ⏳ |
-| 07 | OSPF | ⏳ |
-| 08 | Firewall & ACL | ⏳ |
-| 09 | Linux Server Administration | ⏳ |
-| 10 | Docker | ⏳ |
-| 11 | Kubernetes | ⏳ |
-| 12 | Python Automation | ⏳ |
-| 13 | Ansible | ⏳ |
-| 14 | Monitoring | ⏳ |
+![Enterprise Topology](Assets/diagrams/Enterprise-Topology.png)
 
 ---
 
-# 📂 Repository Structure
+## 📚 Project Roadmap
+
+| Lab | Topic | Status |
+|------|-------------------------------|:------:|
+| Lab 01 | Enterprise LAN Design | ✅ |
+| Lab 02 | Enterprise VLAN Switching | ✅ |
+| Lab 03 | DHCP Services | ⏳ |
+| Lab 04 | NAT | ⏳ |
+| Lab 05 | Inter-VLAN Routing | ⏳ |
+| Lab 06 | Static Routing | ⏳ |
+| Lab 07 | OSPF | ⏳ |
+| Lab 08 | Firewall | ⏳ |
+| Lab 09 | Linux Server | ⏳ |
+| Lab 10 | Docker | ⏳ |
+| Lab 11 | Kubernetes | ⏳ |
+| Lab 12 | Python Automation | ⏳ |
+| Lab 13 | Ansible | ⏳ |
+
+---
+
+## 📂 Repository Structure
 
 ```text
-Infrastructure-HomeLab
+Infrastructure-HomeLab/
 │
-├── Documentation
-├── GNS3
-├── Scripts
-├── Python
-├── Docker
-├── Diagrams
+├── Documentation/
+├── GNS3/
+├── Scripts/
+├── Python/
+├── Docker/
 └── README.md
 ```
 
 ---
 
-# 📖 Documentation
+## 🎯 Learning Goals
 
-Each lab contains:
-
-- Objectives
-- Theory
-- Configuration
-- Verification
+- Enterprise Networking
+- Linux Administration
+- Infrastructure Automation
+- Docker & Kubernetes
+- Python Programming
+- Git & GitHub
 - Troubleshooting
-- Lessons Learned
-- Interview Questions
 
 ---
 
-# 🚀 Current Progress
-
-✅ Enterprise topology designed
-
-✅ Core Router configured
-
-✅ Core Switch configured
-
-✅ Access Switches configured
-
-✅ Enterprise VLAN infrastructure completed
-
-⬜ DHCP
-
-⬜ NAT
-
-⬜ Inter-VLAN Routing
-
-⬜ OSPF
-
-⬜ Docker
-
-⬜ Kubernetes
-
-⬜ Python Automation
-
----
-
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Georgi Zhgumov**
-
-Enterprise Infrastructure HomeLab Project
-
----
-
-> This repository is continuously updated as new enterprise technologies are implemented.

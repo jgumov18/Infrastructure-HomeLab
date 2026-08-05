@@ -1,5 +1,13 @@
 # Lab 01 - Enterprise LAN Design
 
+## Skills Covered
+
+- Enterprise Network Design
+- VLAN Planning
+- IP Addressing
+- Network Architecture
+- Enterprise Topology Design
+
 ## Overview
 
 This lab documents the design phase of the Infrastructure HomeLab project.
@@ -88,6 +96,14 @@ The network follows a hierarchical enterprise model.
 | VLAN99 | 192.168.99.0/24 | 192.168.99.1 |
 
 ---
+
+## Design Decisions
+
+- Separate Management, Server, User and Guest traffic.
+- Use a dedicated Core Router.
+- Use Core and Access switching layers.
+- Reserve VLAN99 as the Native VLAN.
+- Design the network for future scalability.
 
 # Design Decisions
 
